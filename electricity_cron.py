@@ -115,6 +115,7 @@ class Sbpdcl(object):
         }
 
     def get_details(self, metadata):
+        return
         consumer_no = metadata.get("consumer_no")
         for i in range(5):
             r = requests.Session()
