@@ -107,6 +107,7 @@ class Sbpdcl(object):
                         values.append(input_type_text.get("value", ""))
                         headers.append(td_tag_list[i - 1].text.strip())
         data = dict(zip(headers, values))
+        print("Data:", data)
         return {
             "consumerName": data["Consumer Name"],
             "mobile_number": data["Mobile No"],
