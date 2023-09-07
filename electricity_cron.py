@@ -173,22 +173,22 @@ class Sbpdcl(object):
                     soup = BeautifulSoup(q1.text, "html.parser")
                     tab = soup.find('table', attrs={'id': 'MainContent_GVBillDetails'})
                     results = {}
-                    try:
-                        if tab:
-                            data = self.parse_table_vertical(tab)
-                        else:
-                            tab2 = soup.find("div", attrs={"id": "MainContent_pnlTotalAmountText"}).find("table")
-                            data = self.parse_table_horizontal(tab2)
-                    except Exception as e:
-                        print(e)
-                        continue
-                    if not data:
-                        print(q1.text)
-                    if isinstance(data, list):
-                        results.update(data[0])
-                    elif isinstance(data, dict):
-                        results.update(data)
-                    results.update(self.extract_info(soup))
+                    # try:
+                    #     if tab:
+                    #         data = self.parse_table_vertical(tab)
+                    #     else:
+                    #         tab2 = soup.find("div", attrs={"id": "MainContent_pnlTotalAmountText"}).find("table")
+                    #         data = self.parse_table_horizontal(tab2)
+                    # except Exception as e:
+                    #     print(e)
+                    #     continue
+                    # if not data:
+                    #     print(q1.text)
+                    # if isinstance(data, list):
+                    #     results.update(data[0])
+                    # elif isinstance(data, dict):
+                    #     results.update(data)
+                    # results.update(self.extract_info(soup))
                     # PARSE PDF
                     if soup.find("input", {"id": "MainContent_GVBillDetails_lnkView_0"}):
                         form_data = self.get_form_data(soup)
@@ -246,7 +246,7 @@ class Sbpdcl(object):
                                                        {
                                                            "ctl00$MainContent$lnkView1": "View Bill",
                                                            "ctl00$MainContent$txtConID": consumer_no,
-                                                           "ctl00$MainContent$txtConName": results.get("consumerName"),
+                                                           "ctl00$MainContent$txtConName": "PINKI  RANI",
                                                            "ctl00$MainContent$txtAmountPayable": "",
                                                            "ctl00$MainContent$txtEmailId": "",
                                                            "ctl00$MainContent$txtMobileNo": "",
