@@ -130,7 +130,7 @@ class Sbpdcl(object):
                 print(e)
                 continue
             if q.status_code == 200:
-                soup = BeautifulSoup(q.text, "lxml")
+                soup = BeautifulSoup(q.text, "html.parser")
                 form_data = self.get_form_data(soup)
                 form_data = self.modify_input(form_data, [
                     "ctl00$MainContent$btnRural",
@@ -169,7 +169,7 @@ class Sbpdcl(object):
                             or 'CA Number does not belong to' in q1.text or \
                             "Non-Energy Payment details are not available for Temporary Registration Number" in q1.text:
                         return 'NO_RECORD_FOUND'
-                    soup = BeautifulSoup(q1.text, "lxml")
+                    soup = BeautifulSoup(q1.text, "html.parser")
                     tab = soup.find('table', attrs={'id': 'MainContent_GVBillDetails'})
                     results = {}
                     try:
@@ -270,7 +270,7 @@ class Sbpdcl(object):
                             print(e)
                             continue
 
-                        soup = BeautifulSoup(response.text, "lxml")
+                        soup = BeautifulSoup(response.text, "html.parser")
                         VIEWSTATE = soup.find('input', attrs={'id': '__VIEWSTATE'}).get("value")
                         VIEWSTATEGENERATOR = soup.find('input', attrs={'id': '__VIEWSTATEGENERATOR'}).get("value")
                         EVENTVALIDATION = soup.find('input', attrs={'id': '__EVENTVALIDATION'}).get("value")
@@ -296,7 +296,7 @@ class Sbpdcl(object):
                         except Exception as e:
                             print(e)
                             continue
-                        soup = BeautifulSoup(response.text, "lxml")
+                        soup = BeautifulSoup(response.text, "html.parser")
                         current_balance = soup.find('input', attrs={'name': 'ctl00$MainContent$txtCurrentblnce'}) \
                             .get("value")
                         print(current_balance)
