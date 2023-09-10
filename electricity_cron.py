@@ -75,6 +75,7 @@ class Sbpdcl(object):
 
     @staticmethod
     def send_mail(subject, body, recipient):
+        print("trying to send mail")
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
@@ -164,13 +165,14 @@ class Sbpdcl(object):
                 try:
                     q1 = r.post(newurl, data=form_data, headers=headers, verify=False)
                 except Exception as e:
-                    print(e)
+                    print("Excception :", e)
                     continue
+                print("Status code :", q1.status_code)
                 if q1.status_code == 200:
                     if 'Invalid CA Number' in q1.text or 'Bill details are not available for CA Number' in q1.text \
                             or 'CA Number does not belong to' in q1.text or \
                             "Non-Energy Payment details are not available for Temporary Registration Number" in q1.text:
-                        return 'NO_RECORD_FOUND'
+                        print('NO_RECORD_FOUND')
                     soup = BeautifulSoup(q1.text, "html.parser")
                     tab = soup.find('table', attrs={'id': 'MainContent_GVBillDetails'})
                     results = {}
@@ -192,6 +194,7 @@ class Sbpdcl(object):
                     # results.update(self.extract_info(soup))
                     # PARSE PDF
                     if soup.find("input", {"id": "MainContent_GVBillDetails_lnkView_0"}):
+                        print("In for")
                         form_data = self.get_form_data(soup)
                         form_data = self.modify_input(form_data,
                                                       [
@@ -228,6 +231,7 @@ class Sbpdcl(object):
                             print(e)
                             continue
                     elif soup.find("input", {"id": "MainContent_lnkView1"}):
+                        print("In else")
                         adv_url = '{}/frmAdvBillPaymentAll.aspx'.format(base_url)
 
                         form_data1 = self.get_form_data(soup)
@@ -271,7 +275,7 @@ class Sbpdcl(object):
                         except Exception as e:
                             print(e)
                             continue
-
+                        print("After hitting adv url")
                         soup = BeautifulSoup(response.text, "html.parser")
                         VIEWSTATE = soup.find('input', attrs={'id': '__VIEWSTATE'}).get("value")
                         VIEWSTATEGENERATOR = soup.find('input', attrs={'id': '__VIEWSTATEGENERATOR'}).get("value")
@@ -298,6 +302,7 @@ class Sbpdcl(object):
                         except Exception as e:
                             print(e)
                             continue
+                        print("after last hit")
                         soup = BeautifulSoup(response.text, "html.parser")
                         current_balance = soup.find('input', attrs={'name': 'ctl00$MainContent$txtCurrentblnce'}) \
                             .get("value")
