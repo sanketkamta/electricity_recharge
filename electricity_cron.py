@@ -115,7 +115,7 @@ class Sbpdcl(object):
         }
 
     def get_details(self, metadata):
-        return
+        print("Inside the get_details function")
         consumer_no = metadata.get("consumer_no")
         for i in range(5):
             r = requests.Session()
@@ -306,13 +306,13 @@ class Sbpdcl(object):
                             self.send_mail(
                                 "Updated Electricity Balance",
                                 "Balance = {}".format(current_balance),
-                                ["priyakamta007@gmail.com", "deekshaseth1995@gmail.com"]
+                                ["iamsanketkamta@gmail.com", "deekshaseth1995@gmail.com"]
                             )
                         else:
                             self.send_mail(
                                 "Electricity Recharge Needed!",
                                 "Balance = {}".format(current_balance),
-                                ["iamsanketkamta@gmail.com", "priyakamta007@gmail.com"]
+                                ["iamsanketkamta@gmail.com"]
                             )
                         break
 
