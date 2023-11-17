@@ -311,13 +311,13 @@ class Sbpdcl(object):
                             self.send_mail(
                                 "Updated Electricity Balance",
                                 "Balance = {}".format(current_balance),
-                                ["iamsanketkamta@gmail.com", "deekshaseth1995@gmail.com"]
+                                ["spartanzade@gmail.com"]
                             )
                         else:
                             self.send_mail(
                                 "Electricity Recharge Needed!",
                                 "Balance = {}".format(current_balance),
-                                ["iamsanketkamta@gmail.com"]
+                                ["spartanzade@gmail.com"]
                             )
                         break
 
