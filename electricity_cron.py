@@ -278,7 +278,7 @@ class Sbpdcl(object):
                         print("After hitting adv url")
                         soup = BeautifulSoup(response.text, "html.parser")
                         VIEWSTATE = soup.find('input', attrs={'id': '__VIEWSTATE'}).get("value")
-                        VIEWSTATEGENERATOR = soup.find('input', attrs={'id': '__VIEWSTATEGENERATOR'}).get("value")
+                        # VIEWSTATEGENERATOR = soup.find('input', attrs={'id': '__VIEWSTATEGENERATOR'}).get("value")
                         EVENTVALIDATION = soup.find('input', attrs={'id': '__EVENTVALIDATION'}).get("value")
 
                         form_data_new = {
@@ -286,7 +286,7 @@ class Sbpdcl(object):
                             "__EVENTARGUMENT": "",
                             "__LASTFOCUS": "",
                             "__VIEWSTATE": VIEWSTATE,
-                            "__VIEWSTATEGENERATOR": VIEWSTATEGENERATOR,
+                            # "__VIEWSTATEGENERATOR": VIEWSTATEGENERATOR,
                             "__EVENTVALIDATION": EVENTVALIDATION,
                             "ctl00$MainContent$txtConID": "102219722",
                             "ctl00$MainContent$txtConName": "PINKI RANI",
