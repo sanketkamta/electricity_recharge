@@ -232,7 +232,7 @@ class Sbpdcl(object):
                             continue
                     elif soup.find("input", {"id": "MainContent_lnkView1"}):
                         print("In else")
-                        adv_url = '{}/frmAdvBillPaymentAll.aspx'.format(base_url)
+                        adv_url = '{}/frmAdvPaymentWithPP.aspx'.format(base_url)
 
                         form_data1 = self.get_form_data(soup)
                         form_data1 = self.modify_input(form_data1,
@@ -304,8 +304,7 @@ class Sbpdcl(object):
                             continue
                         print("after last hit")
                         soup = BeautifulSoup(response.text, "html.parser")
-                        current_balance = soup.find('input', attrs={'name': 'ctl00$MainContent$txtCurrentblnce'}) \
-                            .get("value")
+                        current_balance = soup.find('input', attrs={'name': 'ctl00$MainContent$txtCurrentblnce'}).get("value")
                         print(current_balance)
                         if float(current_balance) > 75:
                             self.send_mail(
