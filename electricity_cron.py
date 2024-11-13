@@ -80,7 +80,7 @@ class Sbpdcl(object):
         server.ehlo()
         server.starttls()
         server.ehlo()
-        server.login("fascinatemeok@gmail.com", "mfztfuhutbimfszn")
+        server.login("fascinatemeok@gmail.com", "zwopyukqymbybdrj")
         subject = subject
         body = body
         msg = f"Subject : {subject} \n\n {body}"
