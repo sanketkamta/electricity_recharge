@@ -2,7 +2,7 @@ name: Run the cron for electricity
 
 on:
   schedule:
-    - cron: '30 06 * * *'
+    - cron: '30 12 * * *'
 
 jobs:
   build:
